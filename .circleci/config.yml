@@ -1,0 +1,17 @@
+version: 2
+
+jobs:
+  schema:
+    docker:
+      - image: golang:1.9
+    steps:
+      - checkout
+      - run: ./.circleci/deploy-schema.sh
+      - store_artifacts:
+          path: data
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - schema
